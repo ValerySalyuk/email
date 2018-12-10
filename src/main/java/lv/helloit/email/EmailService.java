@@ -19,14 +19,25 @@ public class EmailService {
         this.client = client;
     }
 
-    public void sendMail(String recipient, String subject, String body) throws SparkPostException {
+    public void sendTextMail(String recipient, String subject, String body) throws SparkPostException {
 
         client.sendMessage(
                 fromEmail,
                 recipient,
                 subject,
                 body,
-                "<b>HTML " + body + "</b>");
+                null);
+
+    }
+
+    public void sendHtmlMail(String recipient, String subject, String body) throws SparkPostException {
+
+        client.sendMessage(
+                fromEmail,
+                recipient,
+                subject,
+                null,
+                body);
 
     }
 

@@ -14,7 +14,7 @@ public class EmailApplication {
 
 		EmailService emailService = context.getBean(EmailService.class);
 
-		emailService.sendMail(
+		emailService.sendHtmlMail(
 				"valery.salyuk@gmail.com",
 				"Java test mail",
 				"Test e-mail");
