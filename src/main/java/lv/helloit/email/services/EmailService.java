@@ -21,24 +21,17 @@ public class EmailService {
 
     public void sendTextMail(String recipient, String subject, String body) throws SparkPostException {
 
-        client.sendMessage(
-                fromEmail,
-                recipient,
-                subject,
-                body,
-                null);
+        client.sendMessage(fromEmail, recipient, subject, body, null);
 
     }
 
     public void sendHtmlMail(String recipient, String subject, String body) throws SparkPostException {
 
-        client.sendMessage(
-                fromEmail,
-                recipient,
-                subject,
-                null,
-                body);
+        client.sendMessage(fromEmail, recipient, subject, null, body);
 
     }
 
+    public void setFromEmail(String fromEmail) {
+        this.fromEmail = fromEmail;
+    }
 }

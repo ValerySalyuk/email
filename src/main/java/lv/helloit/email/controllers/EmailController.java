@@ -25,8 +25,10 @@ public class EmailController {
             @RequestParam("subject") String subject,
             @RequestParam("body") String body
             ) throws SparkPostException {
+
         emailService.sendTextMail(recipient, subject, body);
     }
+
 
     @PostMapping("/html")
     public void sendHtml(
@@ -34,7 +36,9 @@ public class EmailController {
             @RequestParam("subject") String subject,
             @RequestParam("body") String body
             ) throws SparkPostException {
+
         emailService.sendHtmlMail(recipient, subject, body);
     }
+
 
 }

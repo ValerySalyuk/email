@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spring:beans xmlns:spring="http://www.springframework.org/schema/beans"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+              xmlns:int="http://www.springframework.org/schema/integration"
+              xmlns:int-http="http://www.springframework.org/schema/integration/http"
+
+              xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/integration
+            http://www.springframework.org/schema/integration/spring-integration.xsd
+            http://www.springframework.org/schema/integration/http
+            http://www.springframework.org/schema/integration/http/spring-integration-http.xsd">
+
+    <int:channel id="requestChannel"/>
+    <int:channel id="responseChannel"/>
+
+    <int:service-activator id="basicMessageProcessor"
+                           ref="messageProcessor"
+                           method="process"
+                           input-channel="requestChannel"
+                           output-channel="responseChannel">
+    </int:service-activator>
+
+    <int-http:inbound-gateway id="testGateway"
+                              payload-expression="#requestParams.name"
+                              supported-methods="GET"
+                              request-channel="requestChannel"
+                              reply-channel="responseChannel"
+                              path="/test">
+        <!--<int-http:request-mapping consumes="application/json"/>-->
+        <int-http:header name="message" expression="#requestParams.name"/>
+    </int-http:inbound-gateway>
+
+    <!--<spring:bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">-->
+        <!--<spring:property name="location" value="application.properties"/>-->
+    <!--</spring:bean>-->
+    <!--<spring:bean id="sparkPostClient" class="com.sparkpost.Client">-->
+        <!--<spring:constructor-arg name="key" value="${api.key}"/>-->
+    <!--</spring:bean>-->
+    <!--<spring:bean id="emailService" class="lv.helloit.email.services.EmailService">-->
+        <!--<spring:constructor-arg name="client" ref="sparkPostClient"/>-->
+        <!--<spring:property name="fromEmail" value="${from.email}"/>-->
+    <!--</spring:bean>-->
+</spring:beans>
