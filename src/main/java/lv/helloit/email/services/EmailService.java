@@ -1,4 +1,4 @@
-package lv.helloit.email;
+package lv.helloit.email.services;
 
 import com.sparkpost.Client;
 import com.sparkpost.exception.SparkPostException;
