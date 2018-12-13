@@ -1,6 +1,7 @@
 package lv.helloit.email.controllers;
 
 import com.sparkpost.exception.SparkPostException;
+import lv.helloit.email.EmailGateway;
 import lv.helloit.email.SpringIntegrationConfig;
 import lv.helloit.email.services.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +12,10 @@ import org.springframework.web.bind.annotation.*;
 public class EmailController {
 
     private final EmailService emailService;
-    private final SpringIntegrationConfig.EmailGateway gateway;
+    private final EmailGateway gateway;
 
     @Autowired
-    public EmailController(EmailService emailService, SpringIntegrationConfig.EmailGateway gateway) {
+    public EmailController(EmailService emailService, EmailGateway gateway) {
         this.emailService = emailService;
         this.gateway = gateway;
 
