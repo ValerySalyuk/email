@@ -23,13 +23,15 @@
     </int:service-activator>
 
     <int-http:inbound-gateway id="testGateway"
-                              payload-expression="#requestParams.name"
+                              payload-expression="#requestParams.body"
                               supported-methods="GET"
                               request-channel="requestChannel"
                               reply-channel="responseChannel"
                               path="/test">
         <!--<int-http:request-mapping consumes="application/json"/>-->
-        <int-http:header name="message" expression="#requestParams.name"/>
+        <int-http:header name="to" expression="#requestParams.to"/>
+        <int-http:header name="subject" expression="#requestParams.subject"/>
+        <int-http:header name="body" expression="#requestParams.body"/>
     </int-http:inbound-gateway>
 
     <!--<spring:bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">-->
