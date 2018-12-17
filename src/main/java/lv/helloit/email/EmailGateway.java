@@ -7,6 +7,6 @@ import org.springframework.integration.annotation.MessagingGateway;
 public interface EmailGateway {
 
     @Gateway(requestChannel = "requestChannel", replyChannel = "responseChannel")
-    String process(String payload);
+    SendMailResponse process(SendMailRequest sendMailRequest);
 
 }
